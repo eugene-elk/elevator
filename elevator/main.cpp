@@ -1,32 +1,35 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "floor.h"
 #include "elevator.h"
-#include "house.h"
 
 using namespace std;
 
 int main()
 {
-	elevator flex(10);
+	elevator_one elv(8);
+	ifstream fin("commands.txt");
 
-	string input = "";
-	while (input != "exit")
+	int num;
+	char command;
+	int floor;
+	fin >> num;
+	for (int i = 0; i < num; i++)
 	{
-		cin >> input;
-		if (input[0] == 'o') 
+		fin >> command;
+		if (command == 'o')
 		{
-			input.erase(0, 1);
-			int target_floor = stoi(input);
-			flex.go_to(target_floor);
+			fin >> floor;
+			elv.buttons[floor] = true;
 		}
-		else if (input[0] == 'i') 
+		else if (command == 'i')
 		{
-			input.erase(0, 1);
-			int target_floor = stoi(input);
-			flex.go_to(target_floor);
+			fin >> floor;
+			elv.floors[floor].button = true;
 		}
+		elv.go_to();
 	}
 
 	return 0;

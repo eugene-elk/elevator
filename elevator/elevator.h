@@ -3,19 +3,46 @@
 #include <vector>
 #include "floor.h"
 
-class elevator
+class abstract_elevator
 {
-private:
-	int position;
+protected:
+	int height;
 	bool doors; // 0 - closed, 1 - open
 	void move_up();
 	void move_down();
-	void open_doors();
-	void close_doors();
-	std::vector <floor1> floors;
+	virtual void open_doors();
+	virtual void close_doors();
+	virtual bool any_button_pressed() = 0;
+	abstract_elevator();
 
 public:
-	
-	void go_to(int target_floor);
-	elevator(int height);
+	int position;
+	std::vector <bool> buttons;
+	virtual void go_to() = 0;
+};
+
+class elevator_one : public abstract_elevator
+{
+private:
+	void open_doors() override;
+	void close_doors() override;
+	bool any_button_pressed() override;
+
+public:
+	std::vector <floor_one> floors;
+	void go_to() override;
+	elevator_one(int height);
+};
+
+class elevator_two : public abstract_elevator
+{
+private:
+	void open_doors() override;
+	void close_doors() override;
+	bool any_button_pressed() override;
+
+public:
+	std::vector <floor_two> floors;
+	void go_to() override;
+	elevator_two(int height);
 };

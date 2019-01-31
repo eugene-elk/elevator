@@ -1,16 +1,30 @@
 #include "floor.h"
+#include <iostream>
 
-floor1::floor1()
+using namespace std;
+
+abstract_floor::abstract_floor()
 {
 	doors = false;
 }
 
-void floor1::open_doors()
+void abstract_floor::open_doors()
 {
 	doors = true;
 }
 
-void floor1::close_doors()
+void abstract_floor::close_doors()
 {
 	doors = false;
+}
+
+floor_one::floor_one() : abstract_floor()
+{
+	button = false;
+}
+
+floor_two::floor_two() : abstract_floor()
+{
+	button_up = false;
+	button_down = false;
 }

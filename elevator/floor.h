@@ -1,12 +1,28 @@
 #pragma once
 
-class floor1
+class abstract_floor
 {
-private:
+protected:
 	bool doors; // 0 - closed, 1 - open
+	abstract_floor();
 
-public: 
+public:
 	void open_doors();
 	void close_doors();
-	floor1();
+	
+};
+
+class floor_one : public abstract_floor
+{
+public:
+	bool button;
+	floor_one();
+};
+
+class floor_two : public abstract_floor
+{
+public:
+	bool button_up;
+	bool button_down;
+	floor_two();
 };
