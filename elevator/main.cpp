@@ -9,11 +9,11 @@ using namespace std;
 
 int main()
 {
-	elevator_one elv(8);
+	elevator_two elv(8);
 	ifstream fin("commands.txt");
 
 	int num;
-	char command;
+	char command, direction;
 	int floor;
 	fin >> num;
 	for (int i = 0; i < num; i++)
@@ -21,16 +21,20 @@ int main()
 		fin >> command;
 		if (command == 'o')
 		{
+			fin >> direction;
 			fin >> floor;
-			elv.buttons[floor] = true;
+			if (direction == 'u')
+				elv.floors[floor].button_up = true;
+			if (direction == 'd')
+				elv.floors[floor].button_down = true;
 		}
 		else if (command == 'i')
 		{
 			fin >> floor;
-			elv.floors[floor].button = true;
+			elv.buttons[floor] = true;
 		}
 		elv.go_to();
 	}
-
+	fin.close();
 	return 0;
 }

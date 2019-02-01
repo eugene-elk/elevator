@@ -39,10 +39,12 @@ class elevator_two : public abstract_elevator
 private:
 	void open_doors() override;
 	void close_doors() override;
-	bool any_button_pressed() override;
+	
 
 public:
+	bool any_button_pressed() override;
 	std::vector <floor_two> floors;
 	void go_to() override;
 	elevator_two(int height);
+	int direction; // -1 - down, 0 - stop, 1 - up
 };
