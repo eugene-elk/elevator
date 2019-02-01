@@ -60,12 +60,6 @@ void elevator_one::open_doors()
 	floors[position].open_doors();
 }
 
-void elevator_two::open_doors()
-{
-	abstract_elevator::open_doors();
-	floors[position].open_doors();
-}
-
 // Close doors methods
 void abstract_elevator::close_doors()
 {
@@ -74,12 +68,6 @@ void abstract_elevator::close_doors()
 }
 
 void elevator_one::close_doors()
-{
-	abstract_elevator::close_doors();
-	floors[position].close_doors();
-}
-
-void elevator_two::close_doors()
 {
 	abstract_elevator::close_doors();
 	floors[position].close_doors();

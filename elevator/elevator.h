@@ -24,11 +24,11 @@ public:
 class elevator_one : public abstract_elevator
 {
 private:
-	void open_doors() override;
-	void close_doors() override;
 	bool any_button_pressed() override;
 
 public:
+	void close_doors() override;
+	void open_doors() override;
 	std::vector <floor_one> floors;
 	void go_to() override;
 	elevator_one(int height);
@@ -37,9 +37,8 @@ public:
 class elevator_two : public abstract_elevator
 {
 private:
-	void open_doors() override;
-	void close_doors() override;
-	
+	friend void elevator_one::open_doors();
+	friend void elevator_one::close_doors();
 
 public:
 	bool any_button_pressed() override;
